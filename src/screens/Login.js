@@ -5,22 +5,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import AuthLayout from "../components/auth/AuthLayout";
+import BottomBox from "../components/auth/BottomBox";
 import Button from "../components/auth/Button";
 import FormBox from "../components/auth/FormBox";
 import Input from "../components/auth/Input";
 import Separator from "../components/auth/Separator";
-import { BaseBox } from "../components/shared";
 import routes from "../routes";
-
-const BottomBox = styled(BaseBox)`
-  padding: 20px 0px;
-  text-align: center;
-  a {
-    font-weight: 600;
-    margin-left: 5px;
-    color: ${(props) => props.theme.accent};
-  }
-`;
 
 const FacebookLogin = styled.div`
   color: #385285;
@@ -52,7 +42,7 @@ function Login() {
       <BottomBox
         cta="Don't have an account?"
         link={routes.signUp}
-        linkTex="Sign up"
+        linkText="Sign up"
       />
     </AuthLayout>
   );

@@ -67,3 +67,6 @@ export const GlobalStyles = createGlobalStyle`
 ) : null}
 
 
+- you can pass props without using function and just export the styled component
+
+
