@@ -20,3 +20,24 @@ npm install --save @fortawesome/free-regular-svg-icons
 
 - use <Redirect to="/" /> when nothing matches
 
+- send props to components to change the state
+
+- however it is bad idea to send props all the way down. Instead use apollo client Reactive Variabale.
+# Reactive Variabale
+- set Variabale
+export const isLoggedInVar = makeVar(false);
+
+- call variable
+const isLoggedIn = useReactiveVar(isLoggedInVar);
+
+- to set variable
+isLoggedInVar(false)
+
+
+
+
+
+
+
+
+
