@@ -108,3 +108,5 @@ Now you can use both frontend error and backend error
 
 - use history go to route in function
 
+- kill all previous states
+window.location.reload();
