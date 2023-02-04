@@ -69,4 +69,37 @@ export const GlobalStyles = createGlobalStyle`
 
 - you can pass props without using function and just export the styled component
 
+# Header
+- use Helmet
+
+#React Hook Form 
+
+-register
+-- creates useSet value
+--- just register and name it
+          <Input
+            ref={register({
+              required: "Username is Required",
+              minLength: 5,
+              validate: (currentValue) => currentValue.includes("potato"),
+              pattern : ""
+            })}
+            name="username"
+            type="text"
+            placeholder="Username"
+          />
+--- if you put async in validate you can check backhand even before user submits
+
+# apollo client
+
+- create client
+export const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
+  cache: new InMemoryCache(),
+});
+
+- wrap app with apollo
+
+- use can use setError from useForm to get error message from backend
+Now you can use both frontend error and backend error
 
