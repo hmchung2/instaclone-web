@@ -55,4 +55,15 @@ export const GlobalStyles = createGlobalStyle`
 - use styled reset to reset every css
 
 
+- For browsing page, <a> refreshes everything so do not use it in application
+
+# Link has attributes of <a> so css applies to both of them
+- route only available for loggedin or not
+
+            {!isLoggedIn ? (
+              <Route path="/sign-up">
+                <SignUp />
+              </Route>
+            ) : null}
+
 
