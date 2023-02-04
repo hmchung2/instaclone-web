@@ -40,13 +40,19 @@ isLoggedInVar(false)
 - use theme provider to set dark mode or light theme
 -- surround all components with theme provider
 
+- use global style
+-- in global style , you have to tell where the css goes  (in the body or head??)
+-- and <globalStyle> under the themeProvider
+export const GlobalStyles = createGlobalStyle`
+   body{
+    background-color:  red;
+   }
+`;
+
+-- also you can put props in the global style
 
 
-
-
-
-
-
+- use styled reset to reset every css
 
 
 
