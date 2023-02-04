@@ -60,10 +60,10 @@ export const GlobalStyles = createGlobalStyle`
 # Link has attributes of <a> so css applies to both of them
 - route only available for loggedin or not
 
-            {!isLoggedIn ? (
-              <Route path="/sign-up">
-                <SignUp />
-              </Route>
-            ) : null}
+{!isLoggedIn ? (
+    <Route path="/sign-up">
+    <SignUp />
+    </Route>
+) : null}
 
 
