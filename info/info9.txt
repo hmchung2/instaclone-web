@@ -103,3 +103,8 @@ export const client = new ApolloClient({
 - use can use setError from useForm to get error message from backend
 Now you can use both frontend error and backend error
 
+- set token in frontend
+    localStorage.setItem("token", token);
+
+- use history go to route in function
+

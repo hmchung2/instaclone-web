@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import { logUserIn } from "../apollo";
 import AuthLayout from "../components/auth/AuthLayout";
 import BottomBox from "../components/auth/BottomBox";
 import Button from "../components/auth/Button";
@@ -35,21 +36,35 @@ const LOGIN_MUTATION = gql`
 `;
 
 function Login() {
-  const { register, handleSubmit, errors, formState, getValues, setError } =
-    useForm({
-      mode: "onChange",
-    });
+  const {
+    register,
+    handleSubmit,
+    errors,
+    formState,
+    getValues,
+    setError,
+    clearErrors,
+  } = useForm({
+    mode: "onChange",
+  });
   const onCompleted = (data) => {
-    console.log(data);
     const {
       login: { ok, error, token },
     } = data;
     if (!ok) {
-      setError("result", {
+      return setError("result", {
         message: error,
       });
     }
+    if (token) {
+      logUserIn(token);
+    }
   };
+
+  const clearLoginError = () => {
+    clearErrors("result");
+  };
+
   const [login, { loading }] = useMutation(LOGIN_MUTATION, {
     onCompleted,
   });
@@ -82,6 +97,7 @@ function Login() {
             type="text"
             placeholder="Username"
             hasError={Boolean(errors?.username?.message)}
+            onChange={clearLoginError}
           />
           <FormError message={errors?.username?.message} />
           <Input
@@ -92,6 +108,7 @@ function Login() {
             type="password"
             placeholder="Password"
             hasError={Boolean(errors?.password?.message)}
+            onChange={clearLoginError}
           />
           <FormError message={errors?.password?.message} />
           <Button
