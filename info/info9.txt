@@ -1,0 +1,22 @@
+# install packages
+
+npm i styled-components react-hook-form react-router-dom @apollo/client graphql react-helmet-async
+npm i --save @fortawesome/fontawesome-svg-core
+npm install --save @fortawesome/free-solid-svg-icons
+npm install --save @fortawesome/react-fontawesome
+npm install --save @fortawesome/free-brands-svg-icons
+npm install --save @fortawesome/free-regular-svg-icons
+
+# Router 
+- Hash Router
+-- react router does pattern matches. So more than one route can match if the link contain router's path
+
+-- add switch to prevent pattern maatching
+
+-- and add exact attribute for "/" home link
+
+- Browser Router
+-- needs more things to configure when deploy
+
+- use <Redirect to="/" /> when nothing matches
+
