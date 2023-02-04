@@ -34,6 +34,15 @@ const isLoggedIn = useReactiveVar(isLoggedInVar);
 isLoggedInVar(false)
 
 
+#styled components
+- use it to set styles easily like css
+
+- use theme provider to set dark mode or light theme
+-- surround all components with theme provider
+
+
+
+
 
 
 
