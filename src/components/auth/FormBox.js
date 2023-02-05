@@ -1,5 +1,5 @@
-import { BaseBox } from "../shared";
 import styled from "styled-components";
+import { BaseBox } from "../shared";
 
 const Container = styled(BaseBox)`
   display: flex;
@@ -21,5 +21,4 @@ const Container = styled(BaseBox)`
 function FormBox({ children }) {
   return <Container>{children}</Container>;
 }
-
 export default FormBox;

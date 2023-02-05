@@ -94,3 +94,45 @@ function Photo({ id, user, file, isLiked, likes }) {
     },
     update: updateToggleLike,
   });
+
+- you can also readFragment to get props when you do not have the props in the component
+const result = cache.readFragment({
+        id: fragmentId,
+        fragment,
+      });
+const { isLiked: cacheIsLiked, likes: cacheLikes } = result;
+
+-- now you start write fragment again
+
+# put innher html
+- install
+npm i sanitize-html@^2.3.2
+
+- allow only specified tag by allowing it
+
+  console.log(
+    sanitizeHtml(payload.replace(/#[\w]+/g, "<mark>$&</mark>"), {
+      allowedTags: ["mark"],
+    })
+  );
+
+
+- react.fragment allows key into empty space
+
+
+# better way to write cache
+
+- use "modify"
+cache.modify({
+    id : photoId,
+    fields :{
+        isLiked(prev){
+            return !prev;
+        }
+    }
+})
+
+- to fake comment in update, you need to get an id at least
+
+- you can easily delete in cache
+cache.evict 

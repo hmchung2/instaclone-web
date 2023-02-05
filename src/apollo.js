@@ -18,8 +18,7 @@ export const logUserIn = (token) => {
 
 export const logUserOut = () => {
   localStorage.removeItem(TOKEN);
-  window.location.reload(true);
-  window.history.forward(1);
+  window.location.reload();
 };
 
 export const darkModeVar = makeVar(Boolean(localStorage.getItem(DARK_MODE)));
