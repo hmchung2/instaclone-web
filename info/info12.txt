@@ -23,3 +23,42 @@ export const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
+
+- refetchQueries in "useMutation" refetches another query to update the feed
+
+  const [toggleLikeMutation, { loading }] = useMutation(TOGGLE_LIKE_MUTATION, {
+    variables: {
+      id,
+    },
+    refetchQueries: [{ query: FEED_QUERY }],
+  });
+
+
+export const FEED_QUERY = gql`
+  query seeFeed {
+    seeFeed {
+      id
+      user {
+        username
+        avatar
+      }
+      file
+      caption
+      likes
+      comments
+      createdAt
+      isMine
+      isLiked
+    }
+  }
+`;
+
+-- if it has variables then 
+refetchQueries: [{ query: FEED_QUERY , variables : {....} }],
+-- the problem is refetching whole feed , so it is not efficient
+
+#write fragment
+
+
+
