@@ -29,14 +29,14 @@ const CREATE_ACCOUNT_MUTATION = gql`
   mutation createAccount(
     $firstName: String!
     $lastName: String
-    $userName: String!
+    $username: String!
     $email: String!
     $password: String!
   ) {
     createAccount(
       firstName: $firstName
       lastName: $lastName
-      userName: $userName
+      username: $username
       email: $email
       password: $password
     ) {
@@ -49,23 +49,23 @@ const CREATE_ACCOUNT_MUTATION = gql`
 function SingUp() {
   const history = useHistory();
   const onCompleted = (data) => {
-    const { userName, password } = getValues();
+    const { username, password } = getValues();
     const {
-      createAccount: { ok, error },
+      createAccount: { ok },
     } = data;
     if (!ok) {
       return;
     }
     history.push(routes.home, {
       message: "Account created. Please log in.",
-      userName,
+      username,
       password,
     });
   };
   const [createAccount, { loading }] = useMutation(CREATE_ACCOUNT_MUTATION, {
     onCompleted,
   });
-  const { register, handleSubmit, errors, formState, getValues } = useForm({
+  const { register, handleSubmit, formState, getValues } = useForm({
     mode: "onChange",
   });
   const onSubmitValid = (data) => {
@@ -115,7 +115,7 @@ function SingUp() {
             ref={register({
               required: "Username is required.",
             })}
-            name="userName"
+            name="username"
             type="text"
             placeholder="Username"
           />

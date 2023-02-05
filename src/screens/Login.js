@@ -26,9 +26,13 @@ const FacebookLogin = styled.div`
   }
 `;
 
+const Notification = styled.div`
+  color: #2ecc71;
+`;
+
 const LOGIN_MUTATION = gql`
-  mutation login($userName: String!, $password: String!) {
-    login(userName: $userName, password: $password) {
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
       ok
       token
       error
@@ -36,13 +40,9 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-const Notification = styled.div`
-  color: #2ecc71;
-`;
-
 function Login() {
   const location = useLocation();
-
+  console.log(location);
   const {
     register,
     handleSubmit,
@@ -54,7 +54,7 @@ function Login() {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      username: location?.state?.userName || "",
+      username: location?.state?.username || "",
       password: location?.state?.password || "",
     },
   });
@@ -71,11 +71,6 @@ function Login() {
       logUserIn(token);
     }
   };
-
-  const clearLoginError = () => {
-    clearErrors("result");
-  };
-
   const [login, { loading }] = useMutation(LOGIN_MUTATION, {
     onCompleted,
   });
@@ -85,10 +80,12 @@ function Login() {
     }
     const { username, password } = getValues();
     login({
-      variables: { userName: username, password: password },
+      variables: { username, password },
     });
   };
-
+  const clearLoginError = () => {
+    clearErrors("result");
+  };
   return (
     <AuthLayout>
       <PageTitle title="Login" />
@@ -106,22 +103,22 @@ function Login() {
                 message: "Username should be longer than 5 chars.",
               },
             })}
+            onChange={clearLoginError}
             name="username"
             type="text"
             placeholder="Username"
             hasError={Boolean(errors?.username?.message)}
-            onChange={clearLoginError}
           />
           <FormError message={errors?.username?.message} />
           <Input
             ref={register({
               required: "Password is required.",
             })}
+            onChange={clearLoginError}
             name="password"
             type="password"
             placeholder="Password"
             hasError={Boolean(errors?.password?.message)}
-            onChange={clearLoginError}
           />
           <FormError message={errors?.password?.message} />
           <Button
