@@ -42,7 +42,6 @@ const LOGIN_MUTATION = gql`
 
 function Login() {
   const location = useLocation();
-  console.log(location);
   const {
     register,
     handleSubmit,
@@ -74,6 +73,7 @@ function Login() {
   const [login, { loading }] = useMutation(LOGIN_MUTATION, {
     onCompleted,
   });
+
   const onSubmitValid = (data) => {
     if (loading) {
       return;
@@ -83,9 +83,11 @@ function Login() {
       variables: { username, password },
     });
   };
+
   const clearLoginError = () => {
     clearErrors("result");
   };
+
   return (
     <AuthLayout>
       <PageTitle title="Login" />
