@@ -5,7 +5,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { isLoggedInVar } from "../apollo";
+import { isLoggedInVar, logUserOut } from "../apollo";
 import useUser from "../hooks/useUser";
 import routes from "../routes";
 import Avatar from "./Avatar";
@@ -62,13 +62,17 @@ function Header() {
     <SHeader>
       <Wrapper>
         <Column>
-          <FontAwesomeIcon icon={faInstagram} size="2x" />
+          <Link to={routes.home}>
+            <FontAwesomeIcon icon={faInstagram} size="2x" />
+          </Link>
         </Column>
         <Column>
           {isLoggedIn ? (
             <IconsContainer>
               <Icon>
-                <FontAwesomeIcon icon={faHome} size="lg" />
+                <Link to={routes.home}>
+                  <FontAwesomeIcon icon={faHome} size="lg" />
+                </Link>
               </Icon>
               <Icon>
                 <FontAwesomeIcon icon={faCompass} size="lg" />
@@ -77,6 +81,9 @@ function Header() {
                 <Link to={`/users/${data?.me?.username}`}>
                   <Avatar url={data?.me?.avatar} />
                 </Link>
+              </Icon>
+              <Icon>
+                <Button onClick={() => logUserOut()}>LogOut</Button>
               </Icon>
             </IconsContainer>
           ) : (
