@@ -1,0 +1,36 @@
+# Set Fragment
+- piece of graphql you can reuse
+
+export const PHOTO_FRAGMENT = gql`
+  fragment PhotoFragment on Photo {
+    id
+    file
+    likes
+    commentNumber
+    isLiked
+  }
+`;
+
+# Apollo Cache
+
+- requesting id is the key element in uniqueness to store it in cache
+
+- if you don't get id, you store it in root
+
+- use dataIdFromObject to prevent to store it in root query
+-- specify what is the key field for the type (choose unique key plz)
+ cache: new InMemoryCache({
+    typePolicies: {
+      User: {
+        keyFields: (obj) => `User:${obj.username}`,
+      },
+    },
+  }),
+
+-- think apollo cache as database
+
+- update gives you both cache and result (data) , oncompleted gives you only data
+
+- you can still change cache from oncompleted (not mutation) , you can still use apolloclient hook to get the cache
+
+
