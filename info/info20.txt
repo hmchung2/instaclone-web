@@ -1,0 +1,14 @@
+# deploy
+
+- create netlify
+
+- connect github
+
+- deploy
+
+
+# router problem in netlify
+- create _redirects in public folder
+- put this
+/* /index.html 200
+
